@@ -1,0 +1,25 @@
+name: Comprehensive GitOps Pipeline
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'microservices/**' ]
+env:
+  # Docker Hub settings (default)
+  DOCKERHUB_REGISTRY: docker.io
+  DOCKERHUB_USERNAME: socrates12345
+  # ACR settings
+  ACR_REGISTRY: healthidpuaeacr.azurecr.io
+  ACR_NAME: healthidpuaeacr
+  # Default registry selection
+  DEFAULT_REGISTRY: acr  # or 'dockerhub' or 'both'
+  # Legacy variables
+  REGISTRY: docker.io
+  REGISTRY_USERNAME: socrates12345
+  GITOPS_REPO: e2e29508-gitops
+jobs:
+  minimal-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and deploy
+        run: echo "Minimal deployment pipeline activated"
